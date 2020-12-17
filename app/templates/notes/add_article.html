@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+
+  <h1 class="mt-2">Добавить заметку</h1>
+  <hr class="mt-0 mb-4">
+  <form action="{% url 'notes:add_article' %}" method="post">
+    {% csrf_token %}
+    {{ form.media }}
+    {% bootstrap_form form show_label=False %}
+    {% bootstrap_button "Сохранить" button_type="submit" button_class="btn-primary" %}
+  </form>
+{% endblock %}

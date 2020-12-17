@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <h1 class="mt-2">Название приложения: {{ app_name }}</h1>
+  <hr class="mt-0 mb-4">
+  {% if user.is_authenticated %}
+    <h2 class="mt-2">Количество заметок: {{ articles_count }}</h2>
+  {% endif %}
+{% endblock %}

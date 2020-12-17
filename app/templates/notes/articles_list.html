@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <h2>Список заметок</h2>
+
+  <ul class="list-group">
+    {% for article in object_list %}
+    <li class="list-group-item">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{ article.text|safe }}</h5>
+        <small>{{ article.created_on }}</small>
+      </div>
+    </li>
+    {% empty %}
+    <p>
+      Пока нет заметок
+    </p>
+    {% endfor %}
+  </ul>
+
+
+{% endblock %}

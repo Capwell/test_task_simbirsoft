@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+  <h1 class="mt-2">Логаут</h1>
+  <hr class="mt-0 mb-4">
+  <h2>Автоматический переход на главную страницу через
+     <span id="time">00:10</span> секунд
+   </h2>
+<a href="{% url 'notes:home' %}">вернуться на главную</a>
+
+{% endblock %}
+{% block js_bottom %}
+<script>
+  function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.text(minutes + ":" + seconds);
+
+        if (--timer < 0) {
+            timer = duration;
+            var url = "{% url 'notes:home' %}";
+            $(location).prop('href', url);
+        }
+    }, 1000);
+}
+
+jQuery(function ($) {
+    var fiveMinutes = 10,
+        display = $('#time');
+    startTimer(fiveMinutes, display);
+});
+
+</script>
+{% endblock %}
